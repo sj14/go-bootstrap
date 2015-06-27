@@ -27,22 +27,23 @@ func display(w http.ResponseWriter, tmpl string, data interface{}) {
 
 //The handlers.
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	m := make(map[string]interface{})
-	m["Title"] = "Home"
-	m["Uptime"] = time.Now().Sub(startTime)
+	m := map[string]interface{}{
+		"Title":  "Home",
+		"Uptime": time.Now().Sub(startTime),
+	}
 
 	display(w, "index", &m)
 }
 
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	m := make(map[string]interface{})
-	m["Title"] = "About"
+	m := map[string]interface{}{
+		"Title": "About",
+	}
 
 	display(w, "about", &m)
 }
 
 func main() {
-
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/about", aboutHandler)
 
