@@ -13,6 +13,8 @@ var (
 		"html/footer.html",
 		"html/index.html",
 		"html/about.html",
+
+		"html/status/404.html",
 	))
 	startTime time.Time
 )
@@ -27,19 +29,22 @@ func display(w http.ResponseWriter, tmpl string, data interface{}) {
 
 //The handlers.
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	m := map[string]interface{}{
-		"Title":  "Home",
-		"Uptime": time.Now().Sub(startTime),
+	if r.URL.Path != "/" {
+		w.WriteHeader(http.StatusNotFound)
+		display(w, "404", nil)
+		return
 	}
-
+	m := map[string]interface{}{
+		"Title": "Home",
+	}
 	display(w, "index", &m)
 }
 
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	m := map[string]interface{}{
-		"Title": "About",
+		"Title":  "About",
+		"Uptime": time.Now().Sub(startTime),
 	}
-
 	display(w, "about", &m)
 }
 
