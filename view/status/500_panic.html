@@ -1,0 +1,8 @@
+{{define "panic"}} {{template "header" .}}
+<div class="starter-template">
+	<h2>{{.Title}}</h2>
+	<div>A error occured:
+		<br>{{.Error}}
+	</div>
+</div>
+{{template "footer" .}} {{end}}
