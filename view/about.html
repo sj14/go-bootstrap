@@ -1,8 +1,6 @@
 {{define "about"}} {{template "header" .}}
-<div class="starter-template">
-	<h2>{{.Title}}</h2>
-	<div>This is the About page
-		<br> Served by Go since: {{.Uptime}}
-	</div>
+<h2>{{.Title}}</h2>
+<div>This is the About page
+	<br> Served by Go since: {{.Uptime}}
 </div>
 {{template "footer" .}} {{end}}
